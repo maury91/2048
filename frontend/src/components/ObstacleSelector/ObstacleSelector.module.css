@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.list {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.box {
+    border: 1px solid var(--light-gray);
+    background-color: var(--blue);
+    color: white;
+    font-size: 1.5em;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+}

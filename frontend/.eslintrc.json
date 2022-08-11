@@ -1,0 +1,34 @@
+{
+  "plugins": [
+    "prettier",
+    "import-alias",
+    "import"
+  ],
+  "extends": [
+    "react-app",
+    "react-app/jest"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "import-alias/import-alias": [
+      "error",
+      {
+        "relativeDepth": 0,
+        "aliases": [{
+          "alias": "",
+          "matcher": "^src/*"
+        }]
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
+}

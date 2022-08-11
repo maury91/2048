@@ -1,46 +1,122 @@
-# Getting Started with Create React App
+# 2048
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a multiplayer version of 2048, the game supports any number of player.
 
-## Available Scripts
+Every move from every player is sent to the server, processed and the result is displayed to every player.
 
-In the project directory, you can run:
+The game supports obstacles, obstacles are unmovable and will prevent other tiles to pass through them.
 
-### `npm start`
+The first player can choose the number of obstacles, and start the game, the other players will follow.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To win the game you need to reach the number _2048_, if you run out of moves you will lose.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The game support persistency, once you choose a name, that name will be used for the entire life of your session, if you want to change name you will need to close the website and re-open it.
 
-### `npm test`
+## I want to play now!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The game is hosted on [https://maury91-2048.herokuapp.com/](https://maury91-2048.herokuapp.com/) and can be played at any moment.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Stack used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The Frontend and the Backend communicate using `socket.io`, this library supports websockets as first choices, if websockets are unavailable it will back off to pooling.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Frontend
 
-### `npm run eject`
+The Frontend is built using React.js, it uses CSS modules for styling and Redux for local state storage.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Backend
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The Backend is built using Node.js and uses Fastify for static hosting ( the backend hosts the frontend so they can live under the same hostname ).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Testing
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Testing is done through Jest both on Frontend and Backend, different types of tests have been used based on what is being tested:
 
-## Learn More
+- To test server services, a real Server is being spin-up in the test and the full connection is tested, with this type of test we are able to test the server service like if we are a client.
+- To test server game logic and shared logic, simple unit testing has been used
+- To test client components, snapshot testing has been used for Pure components ( components that don't have an internal state), and user journey testing has been for Complex components.
+- To test redux state, unit testing has been used
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+A note about testing, I didn't wrote tests for everything because it consumes time and writing repetitive tests will not show anything extra.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To run the tests you can use ( after you complete the _Installing the dependencies_ section ):
+
+```shell
+cd frontend && yarn test && cd ../
+cd backend && yarn test && cd ../
+```
+
+## Ensuring the frontend-backend contract
+
+The contract between the frontend and the backend is ensured through typescript, it is not at the same level of more robust contracts like GraphQL or Swagger, but for a such small project it provides some help.
+
+More in details in both frontend and backend exists a `src/shared` folder, this folder is an equal copy in both of them, it contains the functions used for serialization ( important part that needs to be identical ), and all the Events sent in the Socket with the Typing of their Params.
+
+## Running the game locally
+
+You can use the script `start_2048.sh`, or you can follow the guide below
+
+### Installing the dependencies
+
+In order to run the game locally you need to install all the dependencies.  
+It is recommended to use Node 16.
+
+If you don't have the correct version of Node, you can install [NVM](https://github.com/nvm-sh/nvm) and then run:
+
+```shell
+nvm use
+```
+
+once you have the correct Node you can proceed at installing the dependencies, to do that you can use:
+
+```shell
+cd frontend && yarn && cd ../
+cd backend && yarn && cd ../
+```
+
+### Running in Dev mode
+
+To run the project in Dev mode you need to run both the Frontend and Backend in separate processes:
+
+```shell
+cd frontend && yarn start
+```
+
+```shell
+cd backend && yarn start
+```
+
+The Frontend will open automatically the browser at the right URL.
+
+### Running in Prod mode
+
+To run the project in Prod mode you need to build both the Frontend and Backend:
+
+```shell
+cd frontend && yarn build && cd ../
+cd backend && yarn build && cd ../
+```
+
+Then you will need to copy the output of the Frontend into the `public` folder of the Backend:
+
+```shell
+cd frontend && cp -a build/* ../backend/public
+```
+
+and finally you can run the built Backend with:
+
+```shell
+cd backend && yarn start-prod
+```
+
+### Running in Prod mode with Docker
+
+As an alternative you can also run through Docker:
+
+```shell
+docker build . -t maury91/2048-mp
+docker run -p 3000:3000 -e PORT=3000 -d maury91/2048-mp
+```
+
+You will be able to access the game at http://localhost:3000

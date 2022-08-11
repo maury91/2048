@@ -1,0 +1,43 @@
+{
+  "name": "2048-backend",
+  "version": "1.0.0",
+  "description": "Backend for 2048",
+  "main": "build/index.js",
+  "scripts": {
+    "start": "ts-node-dev src/index.ts",
+    "start-prod": "node build/index.js",
+    "build": "tsc --project tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "lint": "eslint . --fix",
+    "test": "jest"
+  },
+  "author": "Maurizio Carboni",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "7.17.12",
+    "@babel/preset-typescript": "7.17.12",
+    "@tsconfig/node16": "1.0.2",
+    "@types/jest": "27.5.1",
+    "@typescript-eslint/eslint-plugin": "5.25.0",
+    "@typescript-eslint/parser": "5.25.0",
+    "eslint": "8.15.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-import-alias": "1.2.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "jest": "28.1.0",
+    "prettier": "2.6.2",
+    "socket.io-client": "4.5.1",
+    "ts-node": "10.7.0",
+    "ts-node-dev": "1.1.8",
+    "tsc-alias": "1.6.7",
+    "typescript": "4.6.4"
+  },
+  "dependencies": {
+    "@fastify/static": "5.0.2",
+    "fastify": "3.29.0",
+    "fastify-socket.io": "3.0.0",
+    "socket.io": "4.5.1"
+  },
+  "engines": {
+    "node": "16.15.0"
+  }
+}

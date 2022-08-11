@@ -1,0 +1,12 @@
+.container {
+  flex-grow: 10;
+  max-width: 100vmin;
+  min-width: max(300px, 60vmin);
+  aspect-ratio: 1 / 1;
+  position: relative;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}

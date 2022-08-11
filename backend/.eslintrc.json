@@ -1,0 +1,44 @@
+{
+    "env": {
+        "commonjs": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "prettier",
+        "import-alias",
+        "import"
+    ],
+    "rules": {
+        "prettier/prettier": "error",
+        "import-alias/import-alias": [
+            "error",
+            {
+                "relativeDepth": 0,
+                "aliases": [{
+                    "alias": "",
+                    "matcher": "^src/*"
+                }]
+            }
+        ],
+        "import/order": [
+            "error",
+            {
+                "newlines-between": "always",
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                }
+            }
+        ]
+    }
+}

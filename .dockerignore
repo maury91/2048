@@ -1,0 +1,8 @@
+*/node_modules
+*/coverage
+/backend/public
+*/build
+.nvmrc
+jest.config.ts
+.eslintrc.json
+.eslintignore

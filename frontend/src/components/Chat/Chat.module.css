@@ -1,0 +1,18 @@
+.container {
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 5px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 1px solid var(--light-gray);
+    flex-grow: 1;
+}
+
+.messages {
+    flex-grow: 1;
+}
+
+.actions {
+
+}

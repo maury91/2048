@@ -1,0 +1,83 @@
+.element {
+  aspect-ratio: 1 / 1;
+  flex-grow: 1;
+  margin: 5px;
+  border-radius: 15%;
+  overflow: hidden;
+}
+
+.empty {
+  background-color: var(--turquoise);
+  color: white;
+  fill: white;
+}
+
+.block {
+  background-color: var(--black);
+}
+
+.power1 {
+  background-color: var(--emerald);
+  color: white;
+  fill: white;
+}
+
+.power2 {
+  background-color: var(--blue);
+  color: white;
+  fill: white;
+}
+
+.power3 {
+  background-color: var(--amethyst);
+  color: white;
+  fill: white;
+}
+
+.power4 {
+  background-color: var(--orange);
+  color: white;
+  fill: white;
+}
+
+.power5 {
+  background-color: var(--pomegranate);
+  color: white;
+  fill: white;
+}
+
+.power6 {
+  background-color: var(--asphalt);
+  color: white;
+  fill: white;
+}
+
+.power7 {
+  background-color: var(--pumpkin);
+  color: white;
+  fill: white;
+}
+
+.power8 {
+  background-color: var(--asbestos);
+  color: white;
+  fill: white;
+}
+
+.power9 {
+  background-color: var(--pink);
+  color: white;
+  fill: white;
+}
+
+.power10 {
+  background-color: var(--peach);
+  color: white;
+  fill: white;
+}
+
+.power0 {
+  background-color: var(--sand);
+  color: white;
+  fill: white;
+}

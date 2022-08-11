@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+}
+.input {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--light-gray);
+    margin-right: 5px;
+}
+.button {
+    background-color: var(--blue);
+    aspect-ratio: 1 / 1;
+    color: white;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+}
